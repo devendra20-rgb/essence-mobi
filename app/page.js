@@ -24,7 +24,7 @@ export default function Home() {
       <ServicesSection />
 
 
-      <BrandLogos />
+      {/* <BrandLogos /> */}
 
       {/* Stats Section */}
       <StatsSection />
