@@ -394,7 +394,7 @@ export default function ServicesPage() {
       </section>
 
       {/* --- 4. FRAUD PROTECTION STRIP --- */}
-      <section className="py-20 bg-white">
+      {/* <section className="py-20 bg-white">
         <div className="container px-4 mx-auto text-center">
           <div className="inline-flex p-4 bg-indigo-50 text-indigo-600 rounded-2xl mb-6">
             <ShieldAlert size={32} />
@@ -406,7 +406,7 @@ export default function ServicesPage() {
             
           </p>
         </div>
-      </section>
+      </section> */}
 
       {/* --- MODAL POPUP COMPONENT --- */}
       <AnimatePresence>
