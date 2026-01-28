@@ -22,8 +22,6 @@ import {
   ArrowRight,
 } from "lucide-react";
 
-
-
 export default function AboutPage() {
   return (
     <div className="bg-[#fcfdff]">
@@ -95,7 +93,7 @@ export default function AboutPage() {
             className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto mt-10"
           >
             {[
-              { icon: ShieldCheck, text: "Ironclad Security", color: "blue" },
+              { icon: ShieldCheck, text: "Proven Results", color: "blue" },
               { icon: Globe2, text: "Global Inventory", color: "indigo" },
               { icon: Zap, text: "Velocity Payments", color: "purple" },
             ].map((item, i) => (
@@ -279,30 +277,26 @@ export default function AboutPage() {
       </section> */}
 
       {/* --- STATS SECTION (Clean & High Contrast) --- */}
-      <section className="py-20">
+      <section className="py-14">
         <div className="container px-4 mx-auto">
-          <div className="bg-gradient-to-r from-blue-700 to-indigo-800 rounded-[3rem] p-12 lg:p-20 text-white shadow-2xl relative overflow-hidden">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-12 text-center relative z-10">
+          <div className="bg-gradient-to-r from-blue-700 to-indigo-800 rounded-[2.5rem] p-8 md:p-12 text-white shadow-2xl relative overflow-hidden">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 text-center relative z-10">
               <div>
-                <p className="text-4xl lg:text-6xl font-black mb-2">$500M+</p>
-                <p className="text-blue-100 font-bold tracking-widest text-[10px] uppercase">
-                  Payouts Generated
-                </p>
-              </div>
-              <div>
-                <p className="text-4xl lg:text-6xl font-black mb-2">140+</p>
+                <p className="text-4xl lg:text-5xl font-black mb-1">60+</p>
                 <p className="text-blue-100 font-bold tracking-widest text-[10px] uppercase">
                   Countries Active
                 </p>
               </div>
+
               <div>
-                <p className="text-4xl lg:text-6xl font-black mb-2">50K+</p>
+                <p className="text-4xl lg:text-5xl font-black mb-1">3K+</p>
                 <p className="text-blue-100 font-bold tracking-widest text-[10px] uppercase">
                   Elite Campaigns
                 </p>
               </div>
+
               <div>
-                <p className="text-4xl lg:text-6xl font-black mb-2">24/7</p>
+                <p className="text-4xl lg:text-5xl font-black mb-1">24/7</p>
                 <p className="text-blue-100 font-bold tracking-widest text-[10px] uppercase">
                   Tech Support
                 </p>

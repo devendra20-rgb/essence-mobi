@@ -220,7 +220,7 @@ export default function ContactPage() {
                     <p className="text-slate-600 mt-1">Support</p>
                   </div>
                   <div className="text-center p-6 bg-white/70 rounded-2xl border border-slate-200">
-                    <p className="text-4xl font-black text-indigo-600">10K+</p>
+                    <p className="text-4xl font-black text-indigo-600">2K+</p>
                     <p className="text-slate-600 mt-1">Partners</p>
                   </div>
                 </div>

@@ -16,7 +16,7 @@ export default function Home() {
      <HeroSection />
 
       {/* Features Grid */}
-      <WhyChooseUs />
+      {/* <WhyChooseUs /> */}
 
       <ServiceCards />
 
