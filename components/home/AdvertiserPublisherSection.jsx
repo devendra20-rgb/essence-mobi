@@ -1,12 +1,61 @@
+"use client";
+
+
 import { useState } from "react";
-import { TrendingUp, Users, CheckCircle2, ArrowRight, X, Mail, User, Phone, Globe, MessageSquare } from "lucide-react";
+import {
+  TrendingUp,
+  Users,
+  CheckCircle2,
+  ArrowRight,
+  X,
+  Mail,
+  User,
+  Phone,
+  Globe,
+  MessageSquare,
+  Building2,
+  Target,
+  Layers,
+  Megaphone,
+  BarChart,
+  Zap,
+  Building,
+} from "lucide-react";
 import { Button } from "../ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 
 const ServicesSection = () => {
   const [activeModal, setActiveModal] = useState(null); // 'advertiser' or 'publisher' or null
 
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    company: "",
+    message1: "",
+    message2: "",
+  });
+
   const closeModal = () => setActiveModal(null);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const payload = {
+      type: activeModal,
+      ...formData,
+    };
+
+    await fetch("/api/send-mail", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+
+    closeModal();
+  };
+
+
 
   return (
     <section className="py-24 bg-[#fafafa] relative overflow-hidden">
@@ -46,21 +95,39 @@ const ServicesSection = () => {
                 <div className="w-16 h-16 bg-white/10 border border-white/20 rounded-2xl flex items-center justify-center mb-8 backdrop-blur-md">
                   <TrendingUp className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-4xl font-bold mb-4 tracking-tight">For Advertisers</h3>
-                <p className="text-blue-100/90 mb-10 text-lg leading-relaxed">Scale your brand with high-intent audiences and precision-targeted campaigns.</p>
+                <h3 className="text-4xl font-bold mb-4 tracking-tight">
+                  For Advertisers
+                </h3>
+                <p className="text-blue-100/90 mb-10 text-lg leading-relaxed">
+                  Scale your brand with high-intent audiences and
+                  precision-targeted campaigns.
+                </p>
                 <div className="grid sm:grid-cols-2 gap-4 mb-10">
-                  {["Premium traffic", "Performance-based", "Smart Targeting", "Anti-fraud Tech", "Real-time Data", "Global Reach"].map((item, idx) => (
-                    <div key={idx} className="flex items-center gap-3 bg-white/5 border border-white/10 p-3 rounded-xl backdrop-blur-sm">
+                  {[
+                    "Premium traffic",
+                    "Performance-based",
+                    "Smart Targeting",
+                    "Anti-fraud Tech",
+                    "Real-time Data",
+                    "Global Reach",
+                  ].map((item, idx) => (
+                    <div
+                      key={idx}
+                      className="flex items-center gap-3 bg-white/5 border border-white/10 p-3 rounded-xl backdrop-blur-sm"
+                    >
                       <CheckCircle2 className="w-5 h-5 text-blue-300" />
                       <span className="text-sm font-medium">{item}</span>
                     </div>
                   ))}
                 </div>
-                <Button 
-                  onClick={() => setActiveModal('advertiser')}
-                  size="lg" className="w-full sm:w-auto bg-white text-blue-600 hover:bg-blue-50 rounded-2xl px-8 py-7 text-lg font-bold shadow-lg group/btn">
-                  Start Advertising <ArrowRight className="ml-2 w-5 h-5 group-hover/btn:translate-x-1 transition-transform" />
-                </Button>
+                {/* <Button
+                  onClick={() => setActiveModal("advertiser")}
+                  size="lg"
+                  className="w-full sm:w-auto bg-white text-blue-600 hover:bg-blue-50 rounded-2xl px-8 py-7 text-lg font-bold shadow-lg group/btn"
+                >
+                  Start Advertising{" "}
+                  <ArrowRight className="ml-2 w-5 h-5 group-hover/btn:translate-x-1 transition-transform" />
+                </Button> */}
               </div>
             </div>
           </div>
@@ -73,21 +140,39 @@ const ServicesSection = () => {
                 <div className="w-16 h-16 bg-white/10 border border-white/20 rounded-2xl flex items-center justify-center mb-8 backdrop-blur-md">
                   <Users className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-4xl font-bold mb-4 tracking-tight">For Publishers</h3>
-                <p className="text-purple-100/90 mb-10 text-lg leading-relaxed">Maximize your revenue with premium direct offers and industry-high payouts.</p>
+                <h3 className="text-4xl font-bold mb-4 tracking-tight">
+                  For Publishers
+                </h3>
+                <p className="text-purple-100/90 mb-10 text-lg leading-relaxed">
+                  Maximize your revenue with premium direct offers and
+                  industry-high payouts.
+                </p>
                 <div className="grid sm:grid-cols-2 gap-4 mb-10">
-                  {["Top Commission", "Weekly Payouts", "Exclusive Offers", "Free Resources", "24/7 Support", "Smart Links"].map((item, idx) => (
-                    <div key={idx} className="flex items-center gap-3 bg-white/5 border border-white/10 p-3 rounded-xl backdrop-blur-sm">
+                  {[
+                    "Top Commission",
+                    "Weekly Payouts",
+                    "Exclusive Offers",
+                    "Free Resources",
+                    "24/7 Support",
+                    "Smart Links",
+                  ].map((item, idx) => (
+                    <div
+                      key={idx}
+                      className="flex items-center gap-3 bg-white/5 border border-white/10 p-3 rounded-xl backdrop-blur-sm"
+                    >
                       <CheckCircle2 className="w-5 h-5 text-purple-300" />
                       <span className="text-sm font-medium">{item}</span>
                     </div>
                   ))}
                 </div>
-                <Button 
-                  onClick={() => setActiveModal('publisher')}
-                  size="lg" className="w-full sm:w-auto bg-white text-purple-600 hover:bg-purple-50 rounded-2xl px-8 py-7 text-lg font-bold shadow-lg group/btn">
-                  Join as Publisher <ArrowRight className="ml-2 w-5 h-5 group-hover/btn:translate-x-1 transition-transform" />
-                </Button>
+                {/* <Button
+                  onClick={() => setActiveModal("publisher")}
+                  size="lg"
+                  className="w-full sm:w-auto bg-white text-purple-600 hover:bg-purple-50 rounded-2xl px-8 py-7 text-lg font-bold shadow-lg group/btn"
+                >
+                  Join as Publisher{" "}
+                  <ArrowRight className="ml-2 w-5 h-5 group-hover/btn:translate-x-1 transition-transform" />
+                </Button> */}
               </div>
             </div>
           </div>
@@ -98,68 +183,237 @@ const ServicesSection = () => {
       <AnimatePresence>
         {activeModal && (
           <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-            <motion.div 
-              initial={{ opacity: 0 }} 
-              animate={{ opacity: 1 }} 
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={closeModal}
-              className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" 
+              className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm"
             />
-            
-            <motion.div 
+            <motion.div
               initial={{ scale: 0.9, opacity: 0, y: 20 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
               className="relative w-full max-w-xl bg-white rounded-[2.5rem] shadow-2xl overflow-hidden"
             >
-              {/* Close Button */}
-              <button onClick={closeModal} className="absolute top-6 right-6 p-2 hover:bg-slate-100 rounded-full transition-colors z-10">
+              <button
+                onClick={closeModal}
+                className="absolute top-6 right-6 p-2 hover:bg-slate-100 rounded-full transition-colors z-10"
+              >
                 <X size={24} className="text-slate-500" />
               </button>
 
               <div className="p-8 md:p-12">
                 <div className="mb-8">
-                  <h3 className={`text-3xl font-black mb-2 ${activeModal === 'advertiser' ? 'text-blue-600' : 'text-purple-600'}`}>
-                    {activeModal === 'advertiser' ? 'Advertiser Inquiry' : 'Publisher Application'}
+                  <h3
+                    className={`text-3xl font-black mb-2 ${
+                      activeModal === "advertiser"
+                        ? "text-blue-600"
+                        : "text-purple-600"
+                    }`}
+                  >
+                    {activeModal === "advertiser"
+                      ? "Advertiser Inquiry"
+                      : "Publisher Application"}
                   </h3>
-                  <p className="text-slate-500 font-medium">Please fill out the form below and our team will contact you.</p>
+                  <p className="text-slate-500 font-medium">
+                    Please fill out the form below and our team will contact
+                    you.
+                  </p>
                 </div>
 
-                <form className="space-y-4">
-                  <div className="grid md:grid-cols-2 gap-4">
+                <form className="space-y-5" onSubmit={handleSubmit}>
+                  {/* Common Fields - Full Name + Work Email */}
+                  <div className="grid md:grid-cols-2 gap-5">
                     <div className="relative">
-                      <User className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
-                      <input type="text" placeholder="Full Name" className="w-full pl-12 pr-4 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all" />
+                      <User
+                        className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"
+                        size={18}
+                      />
+                      <input
+                        type="text"
+                        placeholder="Full Name"
+                        required
+                        value={formData.name}
+                        onChange={(e) =>
+                          setFormData({ ...formData, name: e.target.value })
+                        }
+                        className="w-full pl-12 pr-4 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all"
+                      />
                     </div>
+
                     <div className="relative">
-                      <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
-                      <input type="email" placeholder="Business Email" className="w-full pl-12 pr-4 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all" />
+                      <Mail
+                        className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"
+                        size={18}
+                      />
+                      <input
+                        type="email"
+                        placeholder="Work Email"
+                        required
+                        value={formData.email}
+                        onChange={(e) =>
+                          setFormData({ ...formData, email: e.target.value })
+                        }
+                        className="w-full pl-12 pr-4 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all"
+                      />
                     </div>
                   </div>
 
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div className="relative">
-                      <Phone className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
-                      <input type="text" placeholder="Phone Number" className="w-full pl-12 pr-4 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all" />
-                    </div>
-                    <div className="relative">
-                      <MessageSquare className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
-                      <input type="text" placeholder="Skype / Telegram ID" className="w-full pl-12 pr-4 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all" />
-                    </div>
-                  </div>
-
+                  {/* Common - Phone/WhatsApp */}
                   <div className="relative">
-                    <Globe className="absolute left-4 top-4 text-slate-400" size={18} />
-                    <textarea 
-                      placeholder={activeModal === 'advertiser' ? "Tell us about your offers/brand..." : "Tell us about your traffic sources (Social, SEO, PPC)..."} 
-                      rows={4} 
+                    <Phone
+                      className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"
+                      size={18}
+                    />
+                    <input
+                      type="tel"
+                      placeholder="Phone / WhatsApp Number"
+                      required
+                      value={formData.phone}
+                      onChange={(e) =>
+                        setFormData({ ...formData, phone: e.target.value })
+                      }
                       className="w-full pl-12 pr-4 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all"
-                    ></textarea>
+                    />
                   </div>
 
-                  <Button 
-                    className={`w-full py-8 rounded-2xl text-lg font-black shadow-xl transition-transform active:scale-95 ${
-                      activeModal === 'advertiser' ? 'bg-blue-600 hover:bg-blue-700 shadow-blue-200' : 'bg-purple-600 hover:bg-purple-700 shadow-purple-200'
+                  {/* Advertiser-specific or Publisher-specific fields */}
+                  {activeModal === "advertiser" ? (
+                    <>
+                      {/* Advertiser Fields */}
+                      <div className="relative">
+                        <Building
+                          className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"
+                          size={18}
+                        />
+                        <input
+                          type="text"
+                          placeholder="Company Name"
+                          required
+                          value={formData.company}
+                          onChange={(e) =>
+                            setFormData({
+                              ...formData,
+                              company: e.target.value,
+                            })
+                          }
+                          className="w-full pl-12 pr-4 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all"
+                        />
+                      </div>
+
+                      <div className="relative">
+                        <Target
+                          className="absolute left-4 top-4 text-slate-400"
+                          size={18}
+                        />
+                        <textarea
+                          placeholder="Services Needed / Objective (e.g., user acquisition, lead gen, branding...)"
+                          rows={3}
+                          required
+                          value={formData.message1}
+                          onChange={(e) =>
+                            setFormData({
+                              ...formData,
+                              message1: e.target.value,
+                            })
+                          }
+                          className="w-full pl-12 pr-4 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all"
+                        ></textarea>
+                      </div>
+
+                      <div className="relative">
+                        <BarChart
+                          className="absolute left-4 top-4 text-slate-400"
+                          size={18}
+                        />
+                        <textarea
+                          placeholder="Interested Verticals (e.g., Finance, eCommerce, iGaming, Nutra...)"
+                          rows={3}
+                          required
+                          value={formData.message2}
+                          onChange={(e) =>
+                            setFormData({
+                              ...formData,
+                              message2: e.target.value,
+                            })
+                          }
+                          className="w-full pl-12 pr-4 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all"
+                        ></textarea>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      {/* Publisher Fields */}
+                      <div className="relative">
+                        <Building
+                          className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"
+                          size={18}
+                        />
+                        <input
+                          type="text"
+                          placeholder="Publisher / Company Name"
+                          required
+                          value={formData.company}
+                          onChange={(e) =>
+                            setFormData({
+                              ...formData,
+                              company: e.target.value,
+                            })
+                          }
+                          className="w-full pl-12 pr-4 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-purple-500/20 transition-all"
+                        />
+                      </div>
+
+                      <div className="relative">
+                        <Zap
+                          className="absolute left-4 top-4 text-slate-400"
+                          size={18}
+                        />
+                        <textarea
+                          placeholder="Traffic Channels (e.g., Facebook Ads, Google Ads, SEO, Native, Push...)"
+                          rows={3}
+                          required
+                          value={formData.message1}
+                          onChange={(e) =>
+                            setFormData({
+                              ...formData,
+                              message1: e.target.value,
+                            })
+                          }
+                          className="w-full pl-12 pr-4 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-purple-500/20 transition-all"
+                        ></textarea>
+                      </div>
+
+                      <div className="relative">
+                        <Globe
+                          className="absolute left-4 top-4 text-slate-400"
+                          size={18}
+                        />
+                        <textarea
+                          placeholder="GEOs + Models (e.g., US, IN, Tier-1, CPI, CPA, RevShare...)"
+                          rows={3}
+                          required
+                          value={formData.message2}
+                          onChange={(e) =>
+                            setFormData({
+                              ...formData,
+                              message2: e.target.value,
+                            })
+                          }
+                          className="w-full pl-12 pr-4 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-purple-500/20 transition-all"
+                        ></textarea>
+                      </div>
+                    </>
+                  )}
+
+                  {/* Submit Button - color dynamic */}
+                  <Button
+                    type="submit"
+                    className={`w-full py-8 rounded-2xl text-lg font-black shadow-xl ${
+                      activeModal === "advertiser"
+                        ? "bg-blue-600 hover:bg-blue-700"
+                        : "bg-purple-600 hover:bg-purple-700"
                     }`}
                   >
                     Submit Application

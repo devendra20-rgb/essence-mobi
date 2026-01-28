@@ -6,6 +6,7 @@ import WhyChooseUs from "../components/home/WhyChooseUs";
 import HeroSection from "../components/home/HeroSection";
 import StatsSection from "../components/home/StatsSection";
 import BrandLogos from "../components/home/BrandLogo";
+import ServiceCards from "../components/home/ServiceCards";
 
 
 export default function Home() {
@@ -17,8 +18,11 @@ export default function Home() {
       {/* Features Grid */}
       <WhyChooseUs />
 
+      <ServiceCards />
+
       {/* Split Section - Advertisers & Publishers */}
       <ServicesSection />
+
 
       <BrandLogos />
 

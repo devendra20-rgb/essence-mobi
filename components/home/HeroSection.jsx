@@ -98,7 +98,7 @@ const HeroSection = () => {
                     </div>
                     <div className="bg-white p-4 rounded-2xl border border-slate-100 shadow-sm translate-y-3">
                        <Globe className="text-indigo-500 mb-2" size={18} />
-                       <p className="text-xl font-black text-slate-900">120+</p>
+                       <p className="text-xl font-black text-slate-900">60+</p>
                        <p className="text-[9px] font-bold text-slate-400 uppercase">Global Geos</p>
                     </div>
                   </div>

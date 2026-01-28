@@ -5,9 +5,10 @@ import { ChevronRight, ShieldCheck } from "lucide-react";
 
 export default function PrivacyPolicyPage() {
   return (
-    <div className="bg-[#fcfdff] overflow-hidden min-h-screen">
+    <div className="relative bg-[#fcfdff] min-h-screen">
+
       {/* Background effects - same as Services */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
+      <div className="absolute inset-0 -z-10 pointer-events-none overflow-hidden">
         <div className="absolute top-[-10%] left-[-10%] w-[800px] h-[800px] bg-blue-400/10 rounded-full blur-[140px] animate-pulse"></div>
         <div className="absolute bottom-[-5%] right-[-5%] w-[700px] h-[700px] bg-indigo-300/10 rounded-full blur-[120px] animate-pulse"></div>
         <div
@@ -26,7 +27,7 @@ export default function PrivacyPolicyPage() {
       </div>
 
       <section className="relative pt-32 pb-20">
-        <div className="container relative z-10 mx-auto px-6">
+        <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">
             <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-blue-600/5 border border-blue-200 text-blue-700 text-sm font-black tracking-wider uppercase mb-8 shadow-sm">
               <ShieldCheck size={16} className="animate-pulse" />

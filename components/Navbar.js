@@ -2,9 +2,10 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Menu, X, ArrowUpRight } from "lucide-react";
+import { Menu, X, ArrowUpRight, Languages } from "lucide-react";
 import { Button } from "../components/ui/button";
 import Image from "next/image";
+import GoogleTranslate from "./GoogleTranslate";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,7 +13,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 40); // Thoda late trigger taaki initial transparent zyada der rahe
+      setScrolled(window.scrollY > 40);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -33,25 +34,32 @@ export default function Navbar() {
           : "bg-transparent border-b border-transparent"
       }`}
     >
-      <div className="container max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20"> {/* Fixed height for consistency */}
-          {/* LOGO */}
-          <Link href="/" className="flex items-center group relative">
-            <div className="relative w-32 h-14 sm:w-36 sm:h-16 transition-all duration-500">
+      <div className="container max-w-[1400px] mx-auto px-4 sm:px-6">
+        <div className="flex items-center justify-between h-20">
+          {/* LOGO - Left Aligned with Glow Effect */}
+          <Link
+            href="/"
+            className="flex items-center group relative -ml-2 lg:-ml-4 px-2 py-1"
+          >
+            <div
+              className={`relative w-44 h-20 transition-all duration-500 rounded-2xl p-2 ${
+                scrolled ? "bg-transparent" : "bg-transparent"
+              }`}
+            >
+
               <Image
-                src="/essence-logo.jpeg"
+                src="/e-m-logo.png"
                 alt="Essence Mobi Logo"
                 fill
-                className="object-contain transition-transform duration-500 group-hover:scale-105"
+                className="object-contain scale-125 transition-transform duration-500 group-hover:scale-130"
                 priority
-                quality={90}
               />
             </div>
           </Link>
 
-          {/* DESKTOP NAV */}
-          <div className="hidden md:flex items-center gap-10">
-            <div className="flex items-center gap-10">
+          {/* RIGHT SIDE: NAV + LANGUAGE + BUTTON */}
+          <div className="hidden md:flex items-center gap-4 lg:gap-8">
+            <div className="flex items-center gap-6 lg:gap-8">
               {navLinks.map((link) => (
                 <Link
                   key={link.name}
@@ -64,17 +72,29 @@ export default function Navbar() {
               ))}
             </div>
 
+            {/* Language Selector - Visible Box Style */}
+            <div
+              className={`flex items-center gap-2 px-3 py-2 rounded-xl border transition-all duration-300 cursor-pointer ${
+                scrolled
+                  ? "bg-slate-50 border-slate-200"
+                  : "bg-white/20 border-white/30 backdrop-blur-md"
+              }`}
+            >
+              <Languages size={16} className="text-blue-600" />
+              <GoogleTranslate />
+            </div>
+
             <Link href="/contact/">
-              <Button
-                className={`rounded-2xl px-8 py-6 text-[15px] lg:text-[16px] font-black shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5 active:scale-95 flex items-center gap-2 ${
+              {/* <Button
+                className={`rounded-2xl px-6 lg:px-8 py-6 text-[15px] font-black shadow-lg transition-all duration-300 hover:-translate-y-0.5 active:scale-95 flex items-center gap-2 ${
                   scrolled
                     ? "bg-blue-600 hover:bg-blue-700 text-white shadow-blue-200/50"
-                    : "bg-white/90 backdrop-blur-sm text-blue-700 border border-blue-200 hover:bg-blue-50"
+                    : "bg-white text-blue-700 border border-blue-200 hover:bg-blue-50 shadow-xl"
                 }`}
               >
                 Get Started
                 <ArrowUpRight className="w-4 h-4" />
-              </Button>
+              </Button> */}
             </Link>
           </div>
 
@@ -82,11 +102,10 @@ export default function Navbar() {
           <button
             className={`md:hidden p-3 rounded-xl transition-all duration-300 ${
               scrolled
-                ? "bg-slate-100/80 backdrop-blur-sm shadow-sm"
-                : "bg-white/30 backdrop-blur-md border border-white/40 shadow-sm"
+                ? "bg-slate-100/80 shadow-sm"
+                : "bg-white/30 backdrop-blur-md border border-white/40"
             }`}
             onClick={() => setIsOpen(!isOpen)}
-            aria-label="Toggle menu"
           >
             {isOpen ? (
               <X className="h-7 w-7 text-slate-900" />
@@ -97,7 +116,7 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* MOBILE DRAWER - Improved positioning & shadow */}
+      {/* MOBILE DRAWER */}
       <div
         className={`fixed inset-x-0 top-[5rem] md:hidden z-[99] transition-all duration-500 ease-out ${
           isOpen
@@ -105,18 +124,14 @@ export default function Navbar() {
             : "opacity-0 -translate-y-10 pointer-events-none"
         }`}
       >
-        <div className="mx-4 sm:mx-6 mt-4">
-          <div
-            className={`bg-white/95 backdrop-blur-xl rounded-3xl shadow-[0_20px_60px_-15px_rgba(0,0,0,0.15)] border border-slate-100/80 overflow-hidden transition-all duration-500 ${
-              isOpen ? "scale-100 opacity-100" : "scale-95 opacity-0"
-            }`}
-          >
+        <div className="mx-4 mt-2">
+          <div className="bg-white rounded-[2rem] shadow-2xl border border-slate-100 overflow-hidden">
             <div className="p-6 space-y-3">
               {navLinks.map((link) => (
                 <Link
                   key={link.name}
                   href={link.href}
-                  className="flex items-center justify-between rounded-2xl px-6 py-5 text-[17px] font-bold text-slate-800 hover:bg-blue-50/80 hover:text-blue-700 transition-all duration-300"
+                  className="flex items-center justify-between rounded-2xl px-6 py-4 text-[17px] font-bold text-slate-800 hover:bg-blue-50 transition-all"
                   onClick={() => setIsOpen(false)}
                 >
                   {link.name}
@@ -124,9 +139,21 @@ export default function Navbar() {
                 </Link>
               ))}
 
-              <div className="pt-4 pb-2">
+              {/* Language Selector Mobile - High Visibility */}
+              <div className="pt-4 border-t border-slate-100 px-4">
+                <div className="bg-blue-50 rounded-2xl p-4 flex flex-col gap-3">
+                  <div className="flex items-center gap-2 text-blue-700 font-black text-xs uppercase tracking-widest">
+                    <Languages size={16} /> Select Language
+                  </div>
+                  <div className="bg-white rounded-lg p-1 border border-blue-100">
+                    <GoogleTranslate />
+                  </div>
+                </div>
+              </div>
+
+              <div className="pt-4">
                 <Link href="/contact/" onClick={() => setIsOpen(false)}>
-                  <Button className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white rounded-2xl py-7 text-[17px] font-black shadow-xl shadow-blue-200/40 transition-all hover:shadow-2xl hover:-translate-y-1">
+                  <Button className="w-full bg-blue-600 text-white rounded-2xl py-7 text-[17px] font-black shadow-xl">
                     Get Started Now
                   </Button>
                 </Link>

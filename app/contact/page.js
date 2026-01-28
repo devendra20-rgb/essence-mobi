@@ -1,34 +1,46 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import { Button } from '../../components/ui/button'
-import { Input } from '../../components/ui/input'
-import { Textarea } from '../../components/ui/textarea'
-import { MapPin, Mail, Send, CheckCircle2, Sparkles, ArrowRight } from 'lucide-react'
+import { useState } from "react";
+import { Button } from "../../components/ui/button";
+import { Input } from "../../components/ui/input";
+import { Textarea } from "../../components/ui/textarea";
+import {
+  MapPin,
+  Mail,
+  Send,
+  CheckCircle2,
+  Sparkles,
+  ArrowRight,
+} from "lucide-react";
 
 export default function ContactPage() {
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' })
-  const [submitted, setSubmitted] = useState(false)
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+  const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    setSubmitted(true)
+    e.preventDefault();
+    setSubmitted(true);
     setTimeout(() => {
-      setSubmitted(false)
-      setFormData({ name: '', email: '', message: '' })
-    }, 3000)
-  }
+      setSubmitted(false);
+      setFormData({ name: "", email: "", message: "" });
+    }, 3000);
+  };
 
   return (
-    <div className="bg-[#fcfdff] overflow-hidden min-h-screen">
+    <div className="relative bg-[#fcfdff] min-h-screen">
       {/* Background effects - same as Services page */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
+      <div className="absolute inset-0 -z-10 pointer-events-none overflow-hidden">
         <div className="absolute top-[-10%] left-[-10%] w-[800px] h-[800px] bg-blue-400/10 rounded-full blur-[140px] animate-pulse"></div>
         <div className="absolute bottom-[-5%] right-[-5%] w-[700px] h-[700px] bg-indigo-300/10 rounded-full blur-[120px] animate-pulse"></div>
         <div
           className="absolute inset-0 opacity-[0.04]"
           style={{
-            backgroundImage: 'url("https://www.transparenttextures.com/patterns/carbon-fibre.png")',
+            backgroundImage:
+              'url("https://www.transparenttextures.com/patterns/carbon-fibre.png")',
           }}
         ></div>
         <div
@@ -49,14 +61,16 @@ export default function ContactPage() {
           </div>
 
           <h1 className="text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-tight mb-8">
-            Get in Touch with{' '}
+            Get in Touch with{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-700 via-indigo-600 to-purple-600">
               Essence Mobi
             </span>
           </h1>
 
           <p className="text-xl lg:text-2xl text-slate-600 max-w-4xl mx-auto leading-relaxed font-medium">
-            Whether you're a publisher looking for high-payout offers or an advertiser seeking quality traffic — we're here to help you grow faster.
+            Whether you're a publisher looking for high-payout offers or an
+            advertiser seeking quality traffic - we're here to help you grow
+            faster.
           </p>
         </div>
       </section>
@@ -67,9 +81,12 @@ export default function ContactPage() {
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
             {/* Form - Glassmorphism matching Services */}
             <div className="bg-white/60 backdrop-blur-md border border-slate-200 rounded-3xl p-10 shadow-xl hover:shadow-2xl transition-all duration-300">
-              <h2 className="text-4xl font-black text-slate-900 mb-6">Send Your Message</h2>
+              <h2 className="text-4xl font-black text-slate-900 mb-6">
+                Send Your Message
+              </h2>
               <p className="text-slate-600 mb-10 text-lg">
-                Our team usually responds within 4–12 hours. Drop your inquiry below.
+                Our team usually responds within 4–12 hours. Drop your inquiry
+                below.
               </p>
 
               {submitted ? (
@@ -77,41 +94,57 @@ export default function ContactPage() {
                   <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
                     <CheckCircle2 className="w-12 h-12 text-green-600" />
                   </div>
-                  <h3 className="text-3xl font-black text-slate-900 mb-4">Message Sent!</h3>
-                  <p className="text-slate-600 text-lg">We'll get back to you very soon.</p>
+                  <h3 className="text-3xl font-black text-slate-900 mb-4">
+                    Message Sent!
+                  </h3>
+                  <p className="text-slate-600 text-lg">
+                    We'll get back to you very soon.
+                  </p>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
-                    <label className="block text-sm font-bold text-slate-700 mb-2">Your Name</label>
+                    <label className="block text-sm font-bold text-slate-700 mb-2">
+                      Your Name
+                    </label>
                     <Input
                       type="text"
                       placeholder="John Doe"
                       value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({ ...formData, name: e.target.value })
+                      }
                       required
                       className="h-14 rounded-2xl border-slate-300 focus:border-blue-500 focus:ring-blue-200 text-lg"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-bold text-slate-700 mb-2">Email Address</label>
+                    <label className="block text-sm font-bold text-slate-700 mb-2">
+                      Email Address
+                    </label>
                     <Input
                       type="email"
                       placeholder="john@example.com"
                       value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({ ...formData, email: e.target.value })
+                      }
                       required
                       className="h-14 rounded-2xl border-slate-300 focus:border-indigo-500 focus:ring-indigo-200 text-lg"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-bold text-slate-700 mb-2">Your Message</label>
+                    <label className="block text-sm font-bold text-slate-700 mb-2">
+                      Your Message
+                    </label>
                     <Textarea
                       placeholder="Tell us about your project, partnership idea, or any question..."
                       value={formData.message}
-                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({ ...formData, message: e.target.value })
+                      }
                       required
                       rows={6}
                       className="rounded-2xl border-slate-300 focus:border-purple-500 focus:ring-purple-200 text-lg resize-none"
@@ -139,11 +172,16 @@ export default function ContactPage() {
                     <MapPin size={32} />
                   </div>
                   <div>
-                    <h3 className="text-2xl font-black text-slate-900 mb-3">Our Office</h3>
+                    <h3 className="text-2xl font-black text-slate-900 mb-3">
+                      Our Office
+                    </h3>
                     <p className="text-slate-600 leading-relaxed text-lg">
-                      NEST Dubai coworking space<br />
-                      TRYP by Wyndham<br />
-                      Al Thanyah First - Barsha Heights<br />
+                      NEST Dubai
+                      <br />
+                      TRYP by Wyndham
+                      <br />
+                      Al Thanyah First - Barsha Heights
+                      <br />
                       Dubai, United Arab Emirates
                     </p>
                   </div>
@@ -157,14 +195,18 @@ export default function ContactPage() {
                     <Mail size={32} />
                   </div>
                   <div>
-                    <h3 className="text-2xl font-black text-slate-900 mb-3">Email Us</h3>
+                    <h3 className="text-2xl font-black text-slate-900 mb-3">
+                      Email Us
+                    </h3>
                     <a
-                      href="mailto:hello@essencemobi.com"
+                      href="mailto:partner@essencemobi.com"
                       className="text-indigo-600 hover:text-indigo-700 text-2xl font-bold block mb-2 transition-colors"
                     >
-                      hello@essencemobi.com
+                      partner@essencemobi.com
                     </a>
-                    <p className="text-slate-600 text-lg">We usually reply within 4–12 hours</p>
+                    <p className="text-slate-600 text-lg">
+                      We usually reply within 4–12 hours
+                    </p>
                   </div>
                 </div>
               </div>
@@ -175,7 +217,8 @@ export default function ContactPage() {
                   Ready to Scale Your Revenue?
                 </h3>
                 <p className="text-slate-700 mb-8 text-lg">
-                  Join publishers and advertisers already growing with exclusive offers & smart tracking.
+                  Join publishers and advertisers already growing with exclusive
+                  offers & smart tracking.
                 </p>
                 <div className="grid grid-cols-2 gap-6">
                   <div className="text-center p-6 bg-white/70 rounded-2xl border border-slate-200">
@@ -211,5 +254,5 @@ export default function ContactPage() {
         </div>
       </section>
     </div>
-  )
+  );
 }

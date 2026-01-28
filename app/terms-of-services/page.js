@@ -5,9 +5,10 @@ import { ChevronRight, FileText } from "lucide-react";
 
 export default function TermsOfUsePage() {
   return (
-    <div className="bg-[#fcfdff] overflow-hidden min-h-screen">
+    <div className="relative bg-[#fcfdff] min-h-screen">
+
       {/* Same background effects */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
+      <div className="absolute inset-0 -z-10 pointer-events-none overflow-hidden">
         <div className="absolute top-[-10%] left-[-10%] w-[800px] h-[800px] bg-blue-400/10 rounded-full blur-[140px] animate-pulse"></div>
         <div className="absolute bottom-[-5%] right-[-5%] w-[700px] h-[700px] bg-indigo-300/10 rounded-full blur-[120px] animate-pulse"></div>
         <div
