@@ -2,7 +2,8 @@ import { Plus_Jakarta_Sans } from 'next/font/google'
 import './globals.css'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
-import Script from 'next/script'   // ✅ ADD THIS
+import Script from 'next/script'
+import Analytics from './analytics' 
 
 const jakarta = Plus_Jakarta_Sans({ 
   subsets: ['latin'],
@@ -32,12 +33,17 @@ export default function RootLayout({ children }) {
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-32VKFS31J4');
+
+            // Auto page_view OFF (IMPORTANT)
+            gtag('config', 'G-32VKFS31J4', {
+              send_page_view: false,
+            });
           `}
         </Script>
       </head>
 
       <body className={jakarta.className}>
+        <Analytics /> 
         <Navbar />
         {children}
         <Footer />
