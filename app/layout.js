@@ -3,7 +3,8 @@ import './globals.css'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import Script from 'next/script'
-import Analytics from './analytics' 
+import { Suspense } from 'react'
+import Analytics from './analytics'
 
 const jakarta = Plus_Jakarta_Sans({ 
   subsets: ['latin'],
@@ -23,7 +24,6 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        {/* Google Analytics */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-32VKFS31J4"
           strategy="afterInteractive"
@@ -33,17 +33,17 @@ export default function RootLayout({ children }) {
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-
-            // Auto page_view OFF (IMPORTANT)
-            gtag('config', 'G-32VKFS31J4', {
-              send_page_view: false,
-            });
+            gtag('config', 'G-32VKFS31J4', { send_page_view: false });
           `}
         </Script>
       </head>
 
       <body className={jakarta.className}>
-        <Analytics /> 
+        {/* ✅ Suspense fixes build error */}
+        <Suspense fallback={null}>
+          <Analytics />
+        </Suspense>
+
         <Navbar />
         {children}
         <Footer />
