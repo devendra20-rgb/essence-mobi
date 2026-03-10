@@ -1,24 +1,26 @@
-import { Plus_Jakarta_Sans } from 'next/font/google'
-import './globals.css'
-import Navbar from '../components/Navbar'
-import Footer from '../components/Footer'
-import Script from 'next/script'
-import { Suspense } from 'react'
-import Analytics from './analytics'
+import { Plus_Jakarta_Sans } from "next/font/google";
+import "./globals.css";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
+import Script from "next/script";
+import { Suspense } from "react";
+import Analytics from "./analytics";
 
-const jakarta = Plus_Jakarta_Sans({ 
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700', '800'],
-})
+const jakarta = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+});
 
 export const metadata = {
-  title: 'Essence Mobi - Affiliate Marketing Network',
-  description: 'Next-generation affiliate marketing platform connecting brands with publishers for measurable growth and success.',
-  keywords: 'affiliate marketing, performance marketing, advertisers, publishers, CPA network',
+  title: "Essence Mobi - Affiliate Marketing Network",
+  description:
+    "Next-generation affiliate marketing platform connecting brands with publishers for measurable growth and success.",
+  keywords:
+    "affiliate marketing, performance marketing, advertisers, publishers, CPA network",
   icons: {
-    icon: '/fav-icon.png',
+    icon: "/fav-icon.png",
   },
-}
+};
 
 export default function RootLayout({ children }) {
   return (
@@ -47,7 +49,18 @@ export default function RootLayout({ children }) {
         <Navbar />
         {children}
         <Footer />
+        <img
+          src={`https://track.essencemobi.com/pixel
+    ?event=pageview
+    &url=${encodeURIComponent(window.location.href)}
+    &ref=${encodeURIComponent(document.referrer)}
+  `}
+          width="1"
+          height="1"
+          style={{ display: "none" }}
+          alt=""
+        />
       </body>
     </html>
-  )
+  );
 }
