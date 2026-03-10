@@ -5,6 +5,7 @@ import Footer from "../components/Footer";
 import Script from "next/script";
 import { Suspense } from "react";
 import Analytics from "./analytics";
+import TrackingPixel from "../components/TrackingPixel";
 
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -49,17 +50,7 @@ export default function RootLayout({ children }) {
         <Navbar />
         {children}
         <Footer />
-        <img
-          src={`https://track.essencemobi.com/pixel
-    ?event=pageview
-    &url=${encodeURIComponent(window.location.href)}
-    &ref=${encodeURIComponent(document.referrer)}
-  `}
-          width="1"
-          height="1"
-          style={{ display: "none" }}
-          alt=""
-        />
+       <TrackingPixel />
       </body>
     </html>
   );
