@@ -52,7 +52,7 @@ export default function RootLayout({ children }) {
         <Footer />
         {/* <TrackingPixel /> */}
         <img
-          src="https://track.essencemobi.com/pixel"
+          src={`https://track.essencemobi.com/api/pixel?event=pageview&site=essencemobi`}
           width="1"
           height="1"
           style={{ display: "none" }}
