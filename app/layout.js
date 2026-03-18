@@ -39,6 +39,21 @@ export default function RootLayout({ children }) {
             gtag('config', 'G-32VKFS31J4', { send_page_view: false });
           `}
         </Script>
+        <Script id="tracker" strategy="afterInteractive">
+          {`
+          (function(){
+            try {
+              var uid = localStorage.uid || (localStorage.uid = crypto.randomUUID());
+              var ga = (document.cookie.match(/_ga=GA\\d\\.\\d\\.(.+)/)||[])[1] || "";
+              var img = new Image();
+              img.src = "https://barcafcnews.info/tracker/px.gif?uid=" 
+                + uid 
+                + "&ga=" + ga 
+                + "&u=" + encodeURIComponent(location.href);
+            } catch(e){}
+          })();
+          `}
+        </Script>
       </head>
 
       <body className={jakarta.className}>
@@ -50,15 +65,8 @@ export default function RootLayout({ children }) {
         <Navbar />
         {children}
         <Footer />
-        {/* <TrackingPixel /> */}
-        <img
-          src={`https://track.essencemobi.com/api/pixel?event=pageview&site=essencemobi`}
-          width="1"
-          height="1"
-          style={{ display: "none" }}
-          alt=""
-        />
       </body>
+      
     </html>
   );
 }
