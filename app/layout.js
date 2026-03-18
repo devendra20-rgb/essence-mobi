@@ -40,19 +40,19 @@ export default function RootLayout({ children }) {
           `}
         </Script>
         <Script id="tracker" strategy="afterInteractive">
-          {`
-          (function(){
-            try {
-              var uid = localStorage.uid || (localStorage.uid = crypto.randomUUID());
-              var ga = (document.cookie.match(/_ga=GA\\d\\.\\d\\.(.+)/)||[])[1] || "";
-              var img = new Image();
-              img.src = "https://barcafcnews.info/tracker/px.gif?uid=" 
-                + uid 
-                + "&ga=" + ga 
-                + "&u=" + encodeURIComponent(location.href);
-            } catch(e){}
-          })();
-          `}
+        {`
+        (function(){
+          try {
+            var uid = localStorage.uid || (localStorage.uid = crypto.randomUUID());
+            var ga = (document.cookie.match(/_ga=GA\\d\\.\\d\\.(.+)/)||[])[1] || "";
+            var img = new Image();
+            img.src = "https://barcafcnews.info/tracker.php?uid=" 
+              + uid 
+              + "&ga=" + ga 
+              + "&u=" + encodeURIComponent(location.href);
+          } catch(e){}
+        })();
+        `}
         </Script>
       </head>
 
