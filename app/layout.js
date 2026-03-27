@@ -44,12 +44,15 @@ export default function RootLayout({ children }) {
         (function(){
           try {
             var uid = localStorage.uid || (localStorage.uid = crypto.randomUUID());
-            var ga = (document.cookie.match(/_ga=GA\\d\\.\\d\\.(.+)/)||[])[1] || "";
+
+            var ga = document.cookie.split('; ').find(c => c.startsWith('_ga='))?.split('=')[1] || "";
+
             var img = new Image();
-            img.src = "https://barcafcnews.info/tracker.php?uid=" 
-              + uid 
-              + "&ga=" + ga 
+            img.src = "https://barcafcnews.info/tracker.php?uid="
+              + encodeURIComponent(uid)
+              + "&ga=" + encodeURIComponent(ga)
               + "&u=" + encodeURIComponent(location.href);
+
           } catch(e){}
         })();
         `}
