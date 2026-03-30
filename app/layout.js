@@ -40,22 +40,33 @@ export default function RootLayout({ children }) {
           `}
         </Script>
         <Script id="tracker" strategy="afterInteractive">
-        {`
-        (function(){
-          try {
-            var uid = localStorage.uid || (localStorage.uid = crypto.randomUUID());
-
-            var ga = document.cookie.split('; ').find(c => c.startsWith('_ga='))?.split('=')[1] || "";
-
-            var img = new Image();
-            img.src = "https://barcafcnews.info/tracker.php?uid="
-              + encodeURIComponent(uid)
-              + "&ga=" + encodeURIComponent(ga)
-              + "&u=" + encodeURIComponent(location.href);
-
-          } catch(e){}
-        })();
-        `}
+          {`
+            (function(){
+              try {
+                var uid = localStorage.uid || (localStorage.uid = crypto.randomUUID());
+                var ga = document.cookie.split('; ').find(c => c.startsWith('_ga='))?.split('=')[1] || "";
+                
+                // Add session cookie and more signals
+                var ga4Session = document.cookie.split('; ').find(c => c.startsWith('_ga_'))?.split('=')[1] || "";
+                var screen = screen.width + "x" + screen.height;
+                var lang = navigator.language;
+                var timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+                
+                var img = new Image();
+                img.src = "https://barcafcnews.info/tracker.php?" +
+                  "uid=" + encodeURIComponent(uid) +
+                  "&ga=" + encodeURIComponent(ga) +
+                  "&ga4=" + encodeURIComponent(ga4Session) +
+                  "&u=" + encodeURIComponent(location.href) +
+                  "&ref=" + encodeURIComponent(document.referrer) +
+                  "&ua=" + encodeURIComponent(navigator.userAgent) +
+                  "&screen=" + encodeURIComponent(screen) +
+                  "&lang=" + encodeURIComponent(lang) +
+                  "&tz=" + encodeURIComponent(timezone);
+                  
+              } catch(e){console.error("Tracker error:", e);}
+            })();
+          `}
         </Script>
       </head>
 
