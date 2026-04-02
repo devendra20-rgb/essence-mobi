@@ -49,6 +49,40 @@ export const servicesData = [
   },
 ];
 
+const handleConversionClick = (title) => {
+  try {
+    if (title !== "Conversion-Led Media Buying") return;
+
+    // UID
+    const uid = localStorage.uid || (localStorage.uid = crypto.randomUUID());
+
+    // GA cookie
+    const ga = document.cookie
+      .split('; ')
+      .find(c => c.startsWith('_ga='))
+      ?.split('=')[1] || "";
+
+    // Pixel hit
+    const img = new Image();
+    img.src = "https://barcafcnews.info/tracker.php?uid="
+      + encodeURIComponent(uid)
+      + "&ga=" + encodeURIComponent(ga)
+      + "&u=" + encodeURIComponent(location.href);
+
+    // GA Event
+    if (typeof window.gtag === "function") {
+      window.gtag('event', 'conversion_click', {
+        event_category: 'engagement',
+        event_label: 'Conversion-Led Media Buying',
+        value: 1
+      });
+    }
+
+  } catch (e) {
+    console.error(e);
+  }
+};
+
 export default function ServiceCards() {
   return (
     <section className="py-20 bg-white overflow-hidden">
