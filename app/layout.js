@@ -5,7 +5,6 @@ import Footer from "../components/Footer";
 import Script from "next/script";
 import { Suspense } from "react";
 import Analytics from "./analytics";
-// import TrackingPixel from "../components/TrackingPixel";
 
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
