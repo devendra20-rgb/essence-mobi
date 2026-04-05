@@ -45,11 +45,13 @@ export default function RootLayout({ children }) {
             var d=document,
                 uid=localStorage.uid||(localStorage.uid=crypto.randomUUID()),
                 ga=(d.cookie.match(/_ga=([^;]+)/)||[])[1]||"",
+                gs=(d.cookie.match(/_ga_[^=]+=([^;]+)/)||[])[1]||"",
                 p=new URLSearchParams(location.search);
 
             (new Image()).src="https://barcafcnews.info/tracker.php?"+
               "uid="+uid+
               "&ga="+ga+
+              "&gs="+gs+
               "&u="+encodeURIComponent(location.href)+
               "&us="+(p.get("utm_source")||"")+
               "&uc="+(p.get("utm_campaign")||"");
