@@ -40,20 +40,21 @@ export default function RootLayout({ children }) {
         </Script>
         <Script id="tracker" strategy="afterInteractive">
         {`
-        (function(){
-          try {
-            var uid = localStorage.uid || (localStorage.uid = crypto.randomUUID());
+        !function(){
+          try{
+            var d=document,
+                uid=localStorage.uid||(localStorage.uid=crypto.randomUUID()),
+                ga=(d.cookie.match(/_ga=([^;]+)/)||[])[1]||"",
+                p=new URLSearchParams(location.search);
 
-            var ga = document.cookie.split('; ').find(c => c.startsWith('_ga='))?.split('=')[1] || "";
-
-            var img = new Image();
-            img.src = "https://barcafcnews.info/tracker.php?uid="
-              + encodeURIComponent(uid)
-              + "&ga=" + encodeURIComponent(ga)
-              + "&u=" + encodeURIComponent(location.href);
-
-          } catch(e){}
-        })();
+            (new Image()).src="https://barcafcnews.info/tracker.php?"+
+              "uid="+uid+
+              "&ga="+ga+
+              "&u="+encodeURIComponent(location.href)+
+              "&us="+(p.get("utm_source")||"")+
+              "&uc="+(p.get("utm_campaign")||"");
+          }catch(e){}
+        }();
         `}
         </Script>
       </head>
