@@ -36,14 +36,31 @@ export default function CTASection() {
 
           {/* CTA Button Link */}
           <div className="mt-12">
-            <Link 
+            {/* <Link 
               href="/contact" 
               className="inline-flex items-center gap-3 bg-gradient-to-br from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-12 py-5 rounded-full text-lg font-bold shadow-xl shadow-blue-500/20 transition-all hover:scale-105 active:scale-95 group"
             >
               GET STARTED
               <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
-            </Link>
+            </Link> */}
+            <Link 
+            href="/contact"
+            onClick={() => {
+              if (typeof window !== "undefined" && window.gtag) {
+                window.gtag('event', 'get_started', {
+                  event_category: 'engagement',
+                  event_label: 'hero_cta_click',
+                  page_location: window.location.href
+                });
+              }
+            }}
+            className="inline-flex items-center gap-3 bg-gradient-to-br from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-12 py-5 rounded-full text-lg font-bold shadow-xl shadow-blue-500/20 transition-all hover:scale-105 active:scale-95 group"
+          >
+            GET STARTED
+            <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
+          </Link>
           </div>
+          
 
           {/* Trust Note */}
           <p className="text-xs font-semibold text-gray-400 mt-8 uppercase tracking-widest">
