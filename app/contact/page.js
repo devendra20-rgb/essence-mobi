@@ -3,13 +3,7 @@ import { useState } from "react";
 import { Button } from "../../components/ui/button";
 import { Input } from "../../components/ui/input";
 import { Textarea } from "../../components/ui/textarea";
-import {
-  MapPin,
-  Mail,
-  Send,
-  CheckCircle2,
-  Sparkles,
-} from "lucide-react";
+import { MapPin, Mail, Send, CheckCircle2, Sparkles } from "lucide-react";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -19,27 +13,50 @@ export default function ContactPage() {
   });
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      setFormData({ name: "", email: "", message: "" });
-    }, 3000);
-  };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   setSubmitted(true);
+  //   setTimeout(() => {
+  //     setSubmitted(false);
+  //     setFormData({ name: "", email: "", message: "" });
+  //   }, 3000);
+  // };
+const handleSubmit = (e) => {
+  e.preventDefault();
+
+  console.log("FORM SUBMITTED CLICKED");
+
+  // GA4 event (IMPORTANT)
+  if (typeof window.gtag === "function") {
+    window.gtag("event", "form_submit", {
+      form_name: "contact_form",
+      page_location: window.location.href,
+      debug_mode: true,
+    });
+  }
+
+  setSubmitted(true);
+
+  setTimeout(() => {
+    setSubmitted(false);
+    setFormData({ name: "", email: "", message: "" });
+  }, 3000);
+};
 
   return (
     // Removed min-h-screen to fix extra space issue
     <div className="relative w-full overflow-x-hidden bg-slate-50/50">
-      
       {/* Background effects - Fixed positioning to stay within bounds */}
       <div className="absolute inset-0 -z-10 pointer-events-none overflow-hidden">
         <div className="absolute top-[-10%] left-1/2 -translate-x-1/2 w-[300px] md:w-[800px] h-[300px] md:h-[800px] bg-blue-400/10 rounded-full blur-[120px]" />
         <div className="absolute bottom-0 right-0 w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-indigo-300/10 rounded-full blur-[120px]" />
-        
+
         <div
           className="absolute inset-0 opacity-[0.03]"
-          style={{ backgroundImage: 'url("https://www.transparenttextures.com/patterns/carbon-fibre.png")' }}
+          style={{
+            backgroundImage:
+              'url("https://www.transparenttextures.com/patterns/carbon-fibre.png")',
+          }}
         />
         <div
           className="absolute inset-0"
@@ -51,7 +68,6 @@ export default function ContactPage() {
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl relative z-20">
-        
         {/* Hero Section - Reduced padding */}
         <section className="pt-20 pb-12 md:pt-28 md:pb-16 text-center">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-600/5 border border-blue-200 text-blue-700 text-xs md:text-sm font-black tracking-wider uppercase mb-6 shadow-sm">
@@ -73,7 +89,6 @@ export default function ContactPage() {
         {/* Main Contact Section */}
         <section className="pb-12 md:pb-16">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-stretch">
-            
             {/* Form Card */}
             <div className="bg-white/70 backdrop-blur-xl border border-slate-200 rounded-[2rem] p-6 md:p-10 shadow-xl flex flex-col justify-center">
               <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-4">
@@ -88,37 +103,53 @@ export default function ContactPage() {
                   <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
                     <CheckCircle2 className="w-12 h-12 text-green-600" />
                   </div>
-                  <h3 className="text-2xl font-black text-slate-900 mb-2">Message Sent!</h3>
-                  <p className="text-slate-600">We'll get back to you very soon.</p>
+                  <h3 className="text-2xl font-black text-slate-900 mb-2">
+                    Message Sent!
+                  </h3>
+                  <p className="text-slate-600">
+                    We'll get back to you very soon.
+                  </p>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-5">
                   <div className="space-y-2">
-                    <label className="text-sm font-bold text-slate-700 ml-1">Your Name</label>
+                    <label className="text-sm font-bold text-slate-700 ml-1">
+                      Your Name
+                    </label>
                     <Input
                       value={formData.name}
-                      onChange={(e) => setFormData({...formData, name: e.target.value})}
+                      onChange={(e) =>
+                        setFormData({ ...formData, name: e.target.value })
+                      }
                       placeholder="John Doe"
                       className="h-14 rounded-xl border-slate-200 bg-white/50 focus:bg-white transition-all"
                       required
                     />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm font-bold text-slate-700 ml-1">Email Address</label>
+                    <label className="text-sm font-bold text-slate-700 ml-1">
+                      Email Address
+                    </label>
                     <Input
                       type="email"
                       value={formData.email}
-                      onChange={(e) => setFormData({...formData, email: e.target.value})}
+                      onChange={(e) =>
+                        setFormData({ ...formData, email: e.target.value })
+                      }
                       placeholder="john@example.com"
                       className="h-14 rounded-xl border-slate-200 bg-white/50 focus:bg-white transition-all"
                       required
                     />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm font-bold text-slate-700 ml-1">Your Message</label>
+                    <label className="text-sm font-bold text-slate-700 ml-1">
+                      Your Message
+                    </label>
                     <Textarea
                       value={formData.message}
-                      onChange={(e) => setFormData({...formData, message: e.target.value})}
+                      onChange={(e) =>
+                        setFormData({ ...formData, message: e.target.value })
+                      }
                       placeholder="Tell us about your project..."
                       rows={5}
                       className="rounded-xl border-slate-200 bg-white/50 focus:bg-white transition-all resize-none"
@@ -145,9 +176,12 @@ export default function ContactPage() {
                     <MapPin size={28} />
                   </div>
                   <div>
-                    <h3 className="text-xl font-black text-slate-900 mb-2">Our Office</h3>
+                    <h3 className="text-xl font-black text-slate-900 mb-2">
+                      Our Office
+                    </h3>
                     <p className="text-slate-600 leading-relaxed">
-                      Al Thanyah First - Barsha Heights<br />
+                      Al Thanyah First - Barsha Heights
+                      <br />
                       Dubai - United Arab Emirates
                     </p>
                   </div>
@@ -161,8 +195,13 @@ export default function ContactPage() {
                     <Mail size={28} />
                   </div>
                   <div className="overflow-hidden w-full">
-                    <h3 className="text-xl font-black text-slate-900 mb-2">Email Us</h3>
-                    <a href="mailto:partner@essencemobi.com" className="text-indigo-600 hover:text-indigo-700 font-bold text-lg md:text-xl truncate block transition-colors">
+                    <h3 className="text-xl font-black text-slate-900 mb-2">
+                      Email Us
+                    </h3>
+                    <a
+                      href="mailto:partner@essencemobi.com"
+                      className="text-indigo-600 hover:text-indigo-700 font-bold text-lg md:text-xl truncate block transition-colors"
+                    >
                       partner@essencemobi.com
                     </a>
                   </div>
@@ -176,12 +215,20 @@ export default function ContactPage() {
                 </h3>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="p-6 bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl border border-blue-100 hover:border-blue-200 backdrop-blur-sm group hover:scale-[1.02] transition-all">
-                    <p className="text-3xl md:text-4xl font-black text-blue-600">24/7</p>
-                    <p className="text-slate-700 font-semibold text-sm md:text-base mt-1">Expert Support</p>
+                    <p className="text-3xl md:text-4xl font-black text-blue-600">
+                      24/7
+                    </p>
+                    <p className="text-slate-700 font-semibold text-sm md:text-base mt-1">
+                      Expert Support
+                    </p>
                   </div>
                   <div className="p-6 bg-gradient-to-br from-indigo-50 to-purple-100 rounded-2xl border border-indigo-100 hover:border-indigo-200 backdrop-blur-sm group hover:scale-[1.02] transition-all">
-                    <p className="text-3xl md:text-4xl font-black text-indigo-600">2K+</p>
-                    <p className="text-slate-700 font-semibold text-sm md:text-base mt-1">Global Partners</p>
+                    <p className="text-3xl md:text-4xl font-black text-indigo-600">
+                      2K+
+                    </p>
+                    <p className="text-slate-700 font-semibold text-sm md:text-base mt-1">
+                      Global Partners
+                    </p>
                   </div>
                 </div>
               </div>
