@@ -21,27 +21,27 @@ export default function ContactPage() {
   //     setFormData({ name: "", email: "", message: "" });
   //   }, 3000);
   // };
-const handleSubmit = (e) => {
-  e.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-  console.log("FORM SUBMITTED CLICKED");
+    console.log("FORM SUBMITTED CLICKED");
 
-  // GA4 event (IMPORTANT)
-  if (typeof window.gtag === "function") {
-    window.gtag("event", "form_submit", {
-      form_name: "contact_form",
-      page_location: window.location.href,
-      debug_mode: true,
-    });
-  }
+    // GA4 event (IMPORTANT)
+    if (typeof window.gtag === "function") {
+      window.gtag("event", "form_submit", {
+        form_name: "contact_form",
+        page_location: window.location.href,
+        debug_mode: true,
+      });
+    }
 
-  setSubmitted(true);
+    setSubmitted(true);
 
-  setTimeout(() => {
-    setSubmitted(false);
-    setFormData({ name: "", email: "", message: "" });
-  }, 3000);
-};
+    setTimeout(() => {
+      setSubmitted(false);
+      setFormData({ name: "", email: "", message: "" });
+    }, 3000);
+  };
 
   return (
     // Removed min-h-screen to fix extra space issue
