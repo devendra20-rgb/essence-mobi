@@ -35,7 +35,7 @@ export default function RootLayout({ children }) {
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-32VKFS31J4', { send_page_view: false });
+            gtag('config', 'G-32VKFS31J4', { send_page_view: true });
           `}
         </Script>
         <Script id="tracker" strategy="afterInteractive">
