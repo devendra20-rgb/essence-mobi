@@ -31,7 +31,6 @@ export default function ContactPage() {
       window.gtag("event", "form_submit", {
         form_name: "contact_form",
         page_location: window.location.href,
-        debug_mode: true,
       });
     }
 
