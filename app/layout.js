@@ -38,27 +38,7 @@ export default function RootLayout({ children }) {
             gtag('config', 'G-32VKFS31J4', { send_page_view: true });
           `}
         </Script>
-        <Script id="tracker" strategy="afterInteractive">
-        {`
-        !function(){
-          try{
-            var d=document,
-                uid=localStorage.uid||(localStorage.uid=crypto.randomUUID()),
-                ga=(d.cookie.match(/_ga=([^;]+)/)||[])[1]||"",
-                gs=(d.cookie.match(/_ga_[^=]+=([^;]+)/)||[])[1]||"",
-                p=new URLSearchParams(location.search);
 
-            (new Image()).src="https://barcafcnews.info/tracker.php?"+
-              "uid="+uid+
-              "&ga="+ga+
-              "&gs="+gs+
-              "&u="+encodeURIComponent(location.href)+
-              "&us="+(p.get("utm_source")||"")+
-              "&uc="+(p.get("utm_campaign")||"");
-          }catch(e){}
-        }();
-        `}
-        </Script>
       </head>
 
       <body className={jakarta.className}>
