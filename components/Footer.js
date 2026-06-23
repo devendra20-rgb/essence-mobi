@@ -75,7 +75,7 @@ export default function Footer() {
             <div className="rounded-2xl overflow-hidden border border-white/10 shadow-lg">
               <iframe
                 // src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3613.1953487127614!2d55.18469831501207!3d25.097419083944686!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f6b3f3f3f3f3f%3A0x3f3f3f3f3f3f3f3f!2sBarsha%20Heights%20-%20Dubai!5e0!3m2!1sen!2sae!4v1234567890123!5m2!1sen!2sae"
-                src="https://www.google.com/maps?q=Barsha+Heights+Dubai&output=embed"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1884.0920405363693!2d72.95532455640209!3d19.18716059549139!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b9e9b01197d5%3A0x3ef7395f9ec1467d!2sSambhav%20IT%20Park!5e0!3m2!1sen!2sin!4v1782239372625!5m2!1sen!2sin"
                 width="100%"
                 height="200"
                 style={{ border: 0 }}
@@ -87,7 +87,7 @@ export default function Footer() {
             </div>
 
             <p className="text-xs text-gray-500 mt-3">
-              Barsha Heights, Dubai, UAE
+              Sambhav IT Park, MIDC Colony, Raheja Gardens, Thane, Maharashtra 400604
             </p>
           </div>
 

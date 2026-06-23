@@ -179,9 +179,9 @@ export default function ContactPage() {
                       Our Office
                     </h3>
                     <p className="text-slate-600 leading-relaxed">
-                      Al Thanyah First - Barsha Heights
+                      Sambhav IT Park, MIDC Colony, Raheja Gardens,
                       <br />
-                      Dubai - United Arab Emirates
+                      Thane, Maharashtra 400604
                     </p>
                   </div>
                 </div>
@@ -239,7 +239,7 @@ export default function ContactPage() {
         <section className="pb-8 md:pb-12 -mx-4 sm:-mx-6 lg:-mx-8 mb-8 md:mb-12">
           <div className="rounded-[2.5rem] overflow-hidden shadow-2xl border-8 border-white mx-4 sm:mx-6 lg:mx-8">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3613.6702220455!2d55.1793!3d25.0887!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f6b86c340a5e5%3A0x9f5d34107779f4c1!2sBarsha%20Heights%2C%20Dubai!5e0!3m2!1sen!2sae!4v1700000000000!5m2!1sen!2sae"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1884.0920405363693!2d72.95532455640209!3d19.18716059549139!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b9e9b01197d5%3A0x3ef7395f9ec1467d!2sSambhav%20IT%20Park!5e0!3m2!1sen!2sin!4v1782239372625!5m2!1sen!2sin"
               className="w-full h-[280px] md:h-[420px] lg:h-[400px]"
               loading="lazy"
               title="Essence Mobi Office"

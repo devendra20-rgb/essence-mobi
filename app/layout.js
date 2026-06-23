@@ -12,7 +12,7 @@ const jakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata = {
-  title: "Essence Mobi - Affiliate Marketing Network",
+  title: "EssenceMobi - Affiliate Marketing Network",
   description:
     "Next-generation affiliate marketing platform connecting brands with publishers for measurable growth and success.",
   keywords:

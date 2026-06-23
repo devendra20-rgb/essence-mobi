@@ -27,7 +27,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "app/career/page.js"  ],
   "exclude": [
     "node_modules"
   ]
