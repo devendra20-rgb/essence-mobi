@@ -38,7 +38,7 @@ export default function RootLayout({ children }) {
             gtag('config', 'G-32VKFS31J4', { send_page_view: true });
           `}
         </Script>
-
+        <script async src="https://analytics.bidpilotos.com/p.js"></script>
       </head>
 
       <body className={jakarta.className}>
@@ -51,7 +51,6 @@ export default function RootLayout({ children }) {
         {children}
         <Footer />
       </body>
-      
     </html>
   );
 }
